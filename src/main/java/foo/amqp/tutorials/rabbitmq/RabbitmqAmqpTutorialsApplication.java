@@ -1,6 +1,6 @@
-package foo.amqp.tutorials.rabbitmqamqptutorials;
+package foo.amqp.tutorials.rabbitmq;
 
-import foo.amqp.tutorials.rabbitmqamqptutorials.tut1.Tut1Config;
+import foo.amqp.tutorials.rabbitmq.tut1.Tut1Config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,21 +20,16 @@ public class RabbitmqAmqpTutorialsApplication {
         SpringApplication.run(RabbitmqAmqpTutorialsApplication.class, args);
     }
 
-
     @Profile("usage_message")
     @Bean
     public CommandLineRunner usage() {
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                log.info("This app uses Spring Profiles to control its behavior.\n");
-                log.info("Sample usage: java -jar rabbit-tutorials.jar --spring.profiles.active=hello-world,sender");
-            }
+        return args -> {
+            log.info("This app uses Spring Profiles to control its behavior.\n");
+            log.info("\n\n\nSAMPLE USAGE:\t java -jar rabbit-tutorials.jar --spring.profiles.active=hello-world,sender\n\n");
         };
     }
 
-
-    @Profile("!usage-message")
+    @Profile("!usage_message")
     @Bean
     public CommandLineRunner tutorial() {
         return new RabbitAmqpTutorialsRunner();

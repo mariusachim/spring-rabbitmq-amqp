@@ -1,4 +1,4 @@
-package foo.amqp.tutorials.rabbitmqamqptutorials.tut1;
+package foo.amqp.tutorials.rabbitmq.tut1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Queue;
@@ -17,7 +17,7 @@ public class Tut1Sender {
     @Autowired
     private Queue queue;
 
-    @Scheduled(fixedDelay = 1000, initialDelay = 500)
+    @Scheduled(fixedDelayString = "${tutorial.sender.msg.interval}", initialDelay = 500)
     public void send() {
         String message = "message_" + ++i;
         template.convertAndSend(queue.getName(), message);
