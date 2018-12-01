@@ -1,27 +1,25 @@
-package foo.amqp.tutorials.rabbitmq.tut1;
+package foo.amqp.tutorials.rabbitmq.second;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @Slf4j
-public class Tut1Sender {
+public class Sender {
 
     static int i = 0;
 
     @Autowired
-    private RabbitTemplate template;
+    private BurstPublisher burstPublisher;
 
     @Autowired
-    private Queue hello;
+    private Queue burstyQueue;
 
     @Scheduled(fixedDelayString = "${tutorial.sender.msg.interval}", initialDelay = 500)
     public void send() {
         String message = "message_" + ++i;
-        template.convertAndSend(hello.getName(), message);
-        log.info(" [x] Sent " + message);
+        burstPublisher.submitTenFold(message);
     }
 
 

@@ -1,6 +1,6 @@
 package foo.amqp.tutorials.rabbitmq;
 
-import foo.amqp.tutorials.rabbitmq.tut1.Tut1Config;
+import foo.amqp.tutorials.rabbitmq.second.SecondConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @EnableScheduling
 @SpringBootApplication
-@Import(Tut1Config.class)
+@Import(SecondConfig.class)
 public class RabbitmqAmqpTutorialsApplication {
 
     public static void main(String[] args) {
